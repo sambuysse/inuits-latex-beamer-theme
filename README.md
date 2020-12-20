@@ -1,7 +1,7 @@
 # inuits-latex-beamer-theme
 This project contains an Inuits themed latex beamer template.
 
-:warning: Only for 16:9 aspect ratio
+:warning: Only for 16:9 aspect ratio. `xelatex` only!
 
 ## How to use
 1. Copy `beamerthemeinuits.sty` to the root of your new or existing beamer project.
