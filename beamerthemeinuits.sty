@@ -1,0 +1,121 @@
+\mode<presentation>
+
+% Requirements
+\RequirePackage{tikz}
+\RequirePackage{fontspec}
+
+% define subject command
+\def\subject#1{\def\@subject{#1}}
+\newcommand{\insertsubject}{\@subject}
+
+% define nickname command
+\def\nickname#1{\def\@nickname{#1}}
+\newcommand{\insertnickname}{\@nickname}
+
+% COLORTHEME %
+\definecolor{inuitsblue}{RGB}{0,167,201}
+
+\setbeamercolor*{title page header}{fg=white}
+\setbeamercolor*{author}{fg=white}
+\setbeamercolor*{date}{fg=white}
+\setbeamercolor*{item}{fg=inuitsblue}
+\setbeamercolor*{footline}{fg=white, bg=inuitsblue}
+
+% OTHER SETTINGS %
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{blocks}[rounded][shadow=true]
+\setbeamertemplate{items}[circle]
+\setbeamertemplate{sections/subsections in toc}[square]
+
+% FONTS %
+\setmainfont{NotoSans-Regular}
+\setbeamerfont{frametitle}{size=\LARGE,series=\normalfont}
+\setbeamerfont{framesubtitle}{size=\large,series=\normalfont}
+
+% CUSTOM FRAMES %
+% Title page
+\defbeamertemplate*{title page}{inuits}
+{
+    \ifnum\thepage=1\relax%
+        \addtocounter{framenumber}{-1}
+    \fi
+    \begin{tikzpicture}[remember picture, overlay]
+        \node at (current page.center) {
+            \includegraphics[width=\paperwidth, height=\paperheight]{./images/inuits_title_presentation.jpg}
+        };
+        \fill[black, opacity=.65] (-10mm,5mm) rectangle (95mm,25mm);
+        \node[text width=55mm, align=right, anchor=north east, yshift=27mm, xshift=104mm] at (current page.west){
+            \normalsize{\color{white}\insertauthor}\medskip
+
+            \small{\color{white}\bfseries\insertnickname}
+        };
+        \node[anchor=west, yshift=21.5mm, xshift=2.5mm] at (current page.west) {
+            \includegraphics[height=15mm]{./images/inuits_white_eps.pdf}
+        };
+
+        \fill[inuitsblue, opacity=.5] (-10mm,-35mm) rectangle (95mm,5mm);
+        \node[text width=95mm, align=left, anchor=south west, yshift=-15mm, xshift=2mm] at (current page.west){
+            \LARGE{\color{white}\bfseries\inserttitle}
+        };
+
+        \fill[white, opacity=.75] (-10mm,-42mm) rectangle (95mm,-35mm);
+        \node[text width=30mm, align=left, anchor=south west, yshift=-34.5mm, xshift=2mm] at (current page.west){
+            \footnotesize{\color{black}\insertdate}
+        };
+        \node[text width=55mm, align=right, anchor=south east, yshift=-34.5mm, xshift=104mm] at (current page.west){
+            \footnotesize{\color{black}\insertsubject}
+        };
+    \end{tikzpicture}
+}
+
+% Frame title
+\defbeamertemplate*{frametitle}{inuits}
+{
+    \nointerlineskip%
+    \begin{beamercolorbox}[wd=\paperwidth,ht=1.4cm]{frametitle}
+        \begin{tikzpicture}
+            \fill[inuitsblue] (0,0) rectangle (\the\paperwidth,30mm);
+            \ifx\insertframesubtitle\empty%
+                {\node[anchor=west, white,font=\large\bfseries] at (0.2,0.65){\insertframetitle};}
+            \else%
+                {\node[anchor= west, white,font=\Large\bfseries] at (0.2,0.81){\insertframetitle};
+                \node[anchor= west, white,font=\normalsize] at (0.2,0.30){\insertframesubtitle};}
+            \fi
+        \end{tikzpicture}
+    \end{beamercolorbox}
+}
+
+% Footline
+\defbeamertemplate*{footline}{inuits}{
+    \ifnum\thepage>1\relax%
+        \begin{beamercolorbox}[wd=\paperwidth,ht=5mm]{section in head/foot}
+            \begin{tikzpicture}
+                \fill[inuitsblue] (0,0) rectangle (\the\paperwidth,11mm);
+                \node[anchor=west, xshift=2mm] at (0, 7mm) {
+                    \includegraphics[height=5mm]{images/inuits_white_eps.pdf}
+                };
+                \node[anchor=east, white, xshift=-3mm] at (\the\paperwidth, 7.2mm) {\bfseries\footnotesize{\insertframenumber}};
+            \end{tikzpicture}
+        \end{beamercolorbox}
+    \fi
+}
+
+% Section page
+\defbeamertemplate*{section page}{inuits}{
+    \addtocounter{framenumber}{-1}
+    \begin{tikzpicture}[remember picture,overlay]
+        \node at (current page.north east) {
+        \begin{tikzpicture}[remember picture,overlay]
+            \fill[inuitsblue] (0,0) rectangle (-151mm,-73mm);
+        \end{tikzpicture}
+        };
+        \node[above right,yshift=20mm,xshift=12mm,text width=130mm] at (current page.south west) {
+        \huge{\color{white}\underline\insertsection}\medskip
+
+        \Large{\color{white}\insertsubsection}
+        };
+    \end{tikzpicture}
+}
+
+
+\mode<all>
