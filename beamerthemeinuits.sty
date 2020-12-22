@@ -3,6 +3,7 @@
 % Requirements
 \RequirePackage{tikz}
 \RequirePackage{fontspec}
+\RequirePackage{multicol}
 
 % define subject command
 \def\subject#1{\def\@subject{#1}}
@@ -113,6 +114,42 @@
         \huge{\color{white}\underline\insertsection}\medskip
 
         \Large{\color{white}\insertsubsection}
+        };
+    \end{tikzpicture}
+}
+
+\def\endcard{%
+      \begin{tikzpicture}[remember picture,overlay]
+        \node[yshift=-13mm] at (current page.north east) {
+        \begin{tikzpicture}[remember picture,overlay]
+            \fill[inuitsblue] (0,0) rectangle (-151mm,-60mm);
+        \end{tikzpicture}
+        };
+        \node[below right,yshift=-15mm,xshift=12mm] at (current page.north west) {
+            \includegraphics[height=18mm]{images/inuits_white_eps.pdf}
+        };
+        \node[below right,yshift=-15mm,xshift=80mm,text width=90mm] at (current page.north west) {
+            \color{white}
+
+            \large{\bfseries\insertauthor}\\
+            \small{\insertnickname}
+
+            \medskip
+            \footnotesize{\insertdate}
+        };
+        \node[above right,yshift=20mm,xshift=12mm,text width=130mm] at (current page.south west) {
+            \color{white}\footnotesize
+            INUITS bvba\\
+            Essensesteenweg 31\\
+            2930 Brasschaat\\
+            Belgium\\
+        };
+        \node[above right,yshift=20mm,xshift=80mm,text width=130mm] at (current page.south west) {
+            \color{white}\footnotesize
+            Tel: +32 380 821 05\\
+            Email: info@inuits.eu\\
+            Web: www.inuits.eu\\
+            BE 0891.514.231\\
         };
     \end{tikzpicture}
 }
