@@ -22,12 +22,14 @@
 \setbeamercolor*{date}{fg=white}
 \setbeamercolor*{item}{fg=inuitsblue}
 \setbeamercolor*{footline}{fg=white, bg=inuitsblue}
+\setbeamercolor*{section in toc}{fg=inuitsblue}
 
 % OTHER SETTINGS %
 \setbeamertemplate{navigation symbols}{}
 \setbeamertemplate{blocks}[rounded][shadow=true]
 \setbeamertemplate{items}[circle]
-\setbeamertemplate{sections/subsections in toc}[square]
+\setbeamertemplate{section in toc}[]
+\setbeamertemplate{subsection in toc}[triangle]
 
 % FONTS %
 \setbeamerfont{frametitle}{size=\LARGE,series=\normalfont}
@@ -55,7 +57,7 @@
         };
 
         \fill[inuitsblue, opacity=.5] (-10mm,-35mm) rectangle (95mm,5mm);
-        \node[text width=95mm, align=left, anchor=south west, yshift=-15mm, xshift=2mm] at (current page.west){
+        \node[text width=95mm, align=left, anchor=west, yshift=0mm, xshift=2mm] at (current page.west){
             \LARGE{\color{white}\bfseries\inserttitle}
         };
 
@@ -73,14 +75,14 @@
 \defbeamertemplate*{frametitle}{inuits}
 {
     \nointerlineskip%
-    \begin{beamercolorbox}[wd=\paperwidth,ht=1.4cm]{frametitle}
+    \begin{beamercolorbox}[wd=\paperwidth,ht=1.5cm]{frametitle}
         \begin{tikzpicture}
             \fill[inuitsblue] (0,0) rectangle (\the\paperwidth,30mm);
             \ifx\insertframesubtitle\empty%
-                {\node[anchor=west, white,font=\large\bfseries] at (0.2,0.65){\insertframetitle};}
+                {\node[anchor=west, white,font=\large\bfseries] at (0.2,0.70){\insertframetitle};}
             \else%
-                {\node[anchor= west, white,font=\Large\bfseries] at (0.2,0.81){\insertframetitle};
-                \node[anchor= west, white,font=\normalsize] at (0.2,0.30){\insertframesubtitle};}
+                {\node[anchor= west, white,font=\Large\bfseries] at (0.2,0.91){\insertframetitle};
+                \node[anchor= west, white,font=\normalsize] at (0.2,0.35){\insertframesubtitle};}
             \fi
         \end{tikzpicture}
     \end{beamercolorbox}
@@ -96,6 +98,15 @@
                     \includegraphics[height=5mm]{images/inuits_white_eps.pdf}
                 };
                 \node[anchor=east, white, xshift=-3mm] at (\the\paperwidth, 7.2mm) {\bfseries\footnotesize{\insertframenumber}};
+                \node[anchor=south, white, xshift=-3mm] at (\the\paperwidth/2, 5.2mm) {
+                    \bfseries\footnotesize{
+                    \ifx\insertshorttitle\empty\else%
+                        \insertshorttitle
+                        \ifx\insertsection\empty\else%
+                            \hspace{0.5em}$\triangleright$\hspace{0.5em}\insertsection
+                        \fi
+                    \fi
+                }};
             \end{tikzpicture}
         \end{beamercolorbox}
     \fi
