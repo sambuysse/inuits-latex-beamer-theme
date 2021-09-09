@@ -100,10 +100,10 @@
                 \node[anchor=east, white, xshift=-3mm] at (\the\paperwidth, 7.2mm) {\bfseries\footnotesize{\insertframenumber}};
                 \node[anchor=south, white, xshift=-3mm] at (\the\paperwidth/2, 5.2mm) {
                     \bfseries\footnotesize{
-                    \ifx\insertshorttitle\empty\else%
-                        \insertshorttitle
-                        \ifx\insertsection\empty\else%
-                            \hspace{0.5em}$\triangleright$\hspace{0.5em}\insertsection
+                    \ifx\insertsection\empty\else%
+                        \insertsection
+                        \ifx\insertsubsection\empty\else%
+                            \hspace{0.5em}$\triangleright$\hspace{0.5em}\insertsubsection
                         \fi
                     \fi
                 }};
